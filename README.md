@@ -1,2 +1,2 @@
 # geekshop
-# There is my first project with GitHub.
+# There is my first project by Django and GitHub.
