@@ -359,7 +359,9 @@ html, body {
 
 
 .admin_container .h2 {
-    margin-top: 10px;
+    max-width: 1140px;
+    margin: 10px;
+    flex-grow: 0.9;
 }
 
 .admin_menu {
@@ -476,6 +478,9 @@ html, body {
     color: #555;
 }
 
+.category_record.not_active{
+    opacity: 0.5;
+}
 
 .products_list .title {
     margin: 20px auto;

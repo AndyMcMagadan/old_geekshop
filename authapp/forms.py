@@ -50,5 +50,12 @@ class ShopUserEditForm(UserChangeForm):
     def clean_age(self):
         data = self.cleaned_data['age']
         if data < 18:
-            raise forms.ValidationError('Слишком молод')
+            raise forms.ValidationError('Слишком молод!')
+        return data
+
+    def clean_email(self):
+        data = self.cleaned_data['email']
+        is_exists = ShopUser.objects.exclude(pk=self.instance.pk).filter(email=data).exists()
+        if is_exists:
+            raise forms.ValidationError('Такая почта уже есть!')
         return data
