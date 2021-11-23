@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from adminapp.forms import ShopUserAdminEditForm
+from adminapp.forms import ShopUserAdminEditForm, ProductCategoryEditForm
 from authapp.forms import ShopUserRegisterForm
 from authapp.models import ShopUser
 from django.contrib.auth.decorators import user_passes_test
@@ -76,13 +76,13 @@ def categories(request):
 @user_passes_test(lambda u: u.is_superuser)
 def category_create(request):
     if request.method == 'POST':
-        category_form = ShopUserRegisterForm(request.POST, request.FILES)
+        category_form = ProductCategoryEditForm(request.POST, request.FILES)
 
-        if category_form .is_valid():
-            category_form .save()
+        if category_form.is_valid():
+            category_form.save()
             return HttpResponseRedirect(reverse('adminapp:category_list'))
     else:
-        category_form = ShopUserRegisterForm()
+        category_form = ProductCategoryEditForm()
     context = {
         'form': category_form
     }
@@ -91,19 +91,19 @@ def category_create(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def category_update(request, pk):
-    # current_category = get_object_or_404(ShopUser, pk=pk)
-    # if request.method == 'POST':
-    #     user_form = ShopUserAdminEditForm(request.POST, request.FILES, instance=current_user)
-    #
-    #     if user_form.is_valid():
-    #         user_form.save()
-    #         return HttpResponseRedirect(reverse('adminapp:user_list'))
-    # else:
-    #     user_form = ShopUserAdminEditForm(instance=current_user)
+    current_category = get_object_or_404(ProductCategory, pk=pk)
+    if request.method == 'POST':
+        category_form = ProductCategoryEditForm(request.POST, request.FILES, instance=current_category)
+
+        if category_form.is_valid():
+            category_form.save()
+            return HttpResponseRedirect(reverse('adminapp:category_list'))
+    else:
+        user_form = ShopUserAdminEditForm(instance=current_category)
     context = {
-        # 'form': user_form
+        'form': category_form
     }
-    return render(request, '', context)
+    return render(request, 'adminapp/form.html', context)
 
 
 @user_passes_test(lambda u: u.is_superuser)
