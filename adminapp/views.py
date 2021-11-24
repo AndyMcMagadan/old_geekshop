@@ -132,7 +132,7 @@ def products(request, pk):
 
 
 @user_passes_test(lambda u: u.is_superuser)
-def product_create(request, pk):
+def product_create(request):
     context = {
 
     }
@@ -141,17 +141,8 @@ def product_create(request, pk):
 
 @user_passes_test(lambda u: u.is_superuser)
 def product_update(request, pk):
-    # current_user = get_object_or_404(ShopUser, pk=pk)
-    # if request.method == 'POST':
-    #     user_form = ShopUserAdminEditForm(request.POST, request.FILES, instance=current_user)
-    #
-    #     if user_form.is_valid():
-    #         user_form.save()
-    #         return HttpResponseRedirect(reverse('adminapp:user_list'))
-    # else:
-    #     user_form = ShopUserAdminEditForm(instance=current_user)
     context = {
-        # 'form': user_form
+
     }
     return render(request, '', context)
 
