@@ -1,5 +1,4 @@
 {% extends 'adminapp/base.html' %}
-{% load static %}
 
 {% block content %}
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
@@ -10,6 +9,6 @@
     <br>
     <br>
     <button class="btn btn-warning col-lg-12">
-        <a href={% url 'adminapp:category_list' object.category.pk %}>назад</a>
+    <a href={% url 'adminapp:product_list' object.category.pk %}>назад</a>
     </button>
 {% endblock %}
