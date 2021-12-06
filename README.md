@@ -1,3 +1,2 @@
 # geekshop
-# continue any more
-# tomorrow here is home work
+# tomorrow here is home work 1
